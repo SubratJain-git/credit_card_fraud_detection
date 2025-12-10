@@ -1,0 +1,101 @@
+transaction_id,card_last4,transaction_datetime,amount_in_inr,merchant_name,merchant_category,merchant_city,state,channel,is_international,is_chip_used,customer_id,customer_age_group,is_fraud
+TXN001,4582,2024-01-15 10:30:00,2500.00,Flipkart,Online Shopping,Mumbai,Maharashtra,Online,False,False,CUST001,26-35,0
+TXN002,7821,2024-01-15 14:45:00,45000.00,Croma Electronics,Electronics,Delhi,Delhi,POS,False,True,CUST002,36-45,1
+TXN003,3456,2024-01-15 02:15:00,8500.00,Amazon India,Online Shopping,Bengaluru,Karnataka,Online,False,False,CUST003,18-25,1
+TXN004,9012,2024-01-16 09:00:00,1200.00,Indian Oil,Fuel,Chennai,Tamil Nadu,POS,False,True,CUST004,26-35,0
+TXN005,5678,2024-01-16 11:30:00,3500.00,Zomato,Food,Hyderabad,Telangana,Online,False,False,CUST005,18-25,0
+TXN006,2345,2024-01-16 23:45:00,75000.00,International Store,Electronics,Singapore,International,Online,True,False,CUST006,36-45,1
+TXN007,8901,2024-01-17 08:20:00,850.00,Cafe Coffee Day,Food,Pune,Maharashtra,POS,False,True,CUST007,18-25,0
+TXN008,6789,2024-01-17 15:10:00,28000.00,Vijay Sales,Electronics,Mumbai,Maharashtra,POS,False,True,CUST008,46-55,0
+TXN009,1234,2024-01-17 01:30:00,55000.00,Unknown Merchant,Online Shopping,Kolkata,West Bengal,Online,False,False,CUST009,26-35,1
+TXN010,4567,2024-01-18 12:00:00,4500.00,Big Bazaar,Retail,Ahmedabad,Gujarat,POS,False,True,CUST010,36-45,0
+TXN011,7890,2024-01-18 16:30:00,15000.00,MakeMyTrip,Travel,Jaipur,Rajasthan,Online,False,False,CUST011,26-35,0
+TXN012,2468,2024-01-18 03:00:00,32000.00,Foreign Website,Online Shopping,London,International,Online,True,False,CUST001,26-35,1
+TXN013,1357,2024-01-19 10:15:00,6800.00,Reliance Digital,Electronics,Lucknow,Uttar Pradesh,POS,False,True,CUST012,46-55,0
+TXN014,9876,2024-01-19 14:00:00,2200.00,Dominos Pizza,Food,Chandigarh,Punjab,Online,False,False,CUST013,18-25,0
+TXN015,5432,2024-01-19 19:30:00,12000.00,Myntra,Online Shopping,Indore,Madhya Pradesh,Online,False,False,CUST014,26-35,0
+TXN016,8765,2024-01-20 07:45:00,500.00,HP Petrol,Fuel,Bhopal,Madhya Pradesh,POS,False,True,CUST015,36-45,0
+TXN017,3210,2024-01-20 02:30:00,42000.00,Suspicious Store,Electronics,Patna,Bihar,Online,False,False,CUST016,26-35,1
+TXN018,6543,2024-01-20 11:00:00,8900.00,Shoppers Stop,Retail,Kochi,Kerala,POS,False,True,CUST017,36-45,0
+TXN019,9871,2024-01-21 13:20:00,3200.00,Swiggy,Food,Nagpur,Maharashtra,Online,False,False,CUST018,18-25,0
+TXN020,4321,2024-01-21 16:45:00,95000.00,Dubai Mall,Electronics,Dubai,International,Online,True,False,CUST019,46-55,1
+TXN021,7654,2024-01-22 09:30:00,1800.00,Bharat Petroleum,Fuel,Surat,Gujarat,POS,False,True,CUST020,26-35,0
+TXN022,2109,2024-01-22 14:15:00,22000.00,Tanishq,Jewellery,Coimbatore,Tamil Nadu,POS,False,True,CUST021,36-45,0
+TXN023,5687,2024-01-22 01:00:00,38000.00,Night Purchase,Online Shopping,Varanasi,Uttar Pradesh,Online,False,False,CUST022,26-35,1
+TXN024,8320,2024-01-23 10:45:00,4200.00,Decathlon,Sports,Visakhapatnam,Andhra Pradesh,POS,False,True,CUST023,18-25,0
+TXN025,1590,2024-01-23 15:30:00,7500.00,Tata Cliq,Online Shopping,Thiruvananthapuram,Kerala,Online,False,False,CUST024,26-35,0
+TXN026,4827,2024-01-23 18:00:00,1100.00,McDonald's,Food,Guwahati,Assam,POS,False,True,CUST025,18-25,0
+TXN027,7163,2024-01-24 08:00:00,65000.00,Apple Store,Electronics,Mumbai,Maharashtra,POS,False,True,CUST026,36-45,0
+TXN028,3596,2024-01-24 03:45:00,48000.00,Overseas Purchase,Online Shopping,New York,International,Online,True,False,CUST027,26-35,1
+TXN029,6829,2024-01-24 12:30:00,2800.00,PVR Cinemas,Entertainment,Delhi,Delhi,POS,False,True,CUST028,18-25,0
+TXN030,9152,2024-01-25 09:15:00,5600.00,Lenskart,Healthcare,Bengaluru,Karnataka,Online,False,False,CUST029,26-35,0
+TXN031,2485,2024-01-25 14:45:00,18500.00,Urban Ladder,Furniture,Hyderabad,Telangana,Online,False,False,CUST030,36-45,0
+TXN032,5718,2024-01-25 20:30:00,900.00,Starbucks,Food,Chennai,Tamil Nadu,POS,False,True,CUST031,26-35,0
+TXN033,8041,2024-01-26 10:00:00,35000.00,Samsung Store,Electronics,Pune,Maharashtra,POS,False,True,CUST032,46-55,0
+TXN034,1374,2024-01-26 02:00:00,52000.00,Late Night Store,Electronics,Ranchi,Jharkhand,Online,False,False,CUST033,26-35,1
+TXN035,4607,2024-01-26 13:30:00,4800.00,Cleartrip,Travel,Kolkata,West Bengal,Online,False,False,CUST034,36-45,0
+TXN036,7930,2024-01-27 07:00:00,750.00,Essar Petrol,Fuel,Raipur,Chhattisgarh,POS,False,True,CUST035,26-35,0
+TXN037,3263,2024-01-27 11:45:00,9200.00,Lifestyle,Retail,Bhubaneswar,Odisha,POS,False,True,CUST036,36-45,0
+TXN038,6596,2024-01-27 16:15:00,2100.00,BookMyShow,Entertainment,Jaipur,Rajasthan,Online,False,False,CUST037,18-25,0
+TXN039,9829,2024-01-28 09:30:00,28500.00,Boat Electronics,Electronics,Ahmedabad,Gujarat,Online,False,False,CUST038,26-35,0
+TXN040,2152,2024-01-28 01:15:00,67000.00,Singapore Shop,Electronics,Singapore,International,Online,True,False,CUST039,36-45,1
+TXN041,5485,2024-01-28 14:00:00,3600.00,Haldiram,Food,Lucknow,Uttar Pradesh,POS,False,True,CUST040,46-55,0
+TXN042,8718,2024-01-29 08:45:00,1400.00,Shell Petrol,Fuel,Mumbai,Maharashtra,POS,False,True,CUST041,26-35,0
+TXN043,1041,2024-01-29 12:20:00,11000.00,Pepperfry,Furniture,Delhi,Delhi,Online,False,False,CUST042,36-45,0
+TXN044,4374,2024-01-29 17:30:00,6300.00,Spencer's,Retail,Bengaluru,Karnataka,POS,False,True,CUST043,26-35,0
+TXN045,7607,2024-01-30 10:00:00,25000.00,Titan Eye+,Healthcare,Chennai,Tamil Nadu,POS,False,True,CUST044,46-55,0
+TXN046,3930,2024-01-30 03:30:00,41000.00,Midnight Deal,Online Shopping,Hyderabad,Telangana,Online,False,False,CUST045,26-35,1
+TXN047,6263,2024-01-30 15:45:00,1950.00,Pizza Hut,Food,Pune,Maharashtra,Online,False,False,CUST046,18-25,0
+TXN048,9596,2024-01-31 09:00:00,8200.00,Nykaa,Beauty,Kolkata,West Bengal,Online,False,False,CUST047,26-35,0
+TXN049,2819,2024-01-31 13:30:00,3100.00,More Supermarket,Retail,Indore,Madhya Pradesh,POS,False,True,CUST048,36-45,0
+TXN050,5152,2024-01-31 18:00:00,72000.00,Hong Kong Store,Electronics,Hong Kong,International,Online,True,False,CUST049,36-45,1
+TXN051,8485,2024-02-01 07:30:00,650.00,Indian Oil,Fuel,Bhopal,Madhya Pradesh,POS,False,True,CUST050,26-35,0
+TXN052,1718,2024-02-01 11:15:00,14500.00,Croma,Electronics,Surat,Gujarat,POS,False,True,CUST051,36-45,0
+TXN053,4041,2024-02-01 16:00:00,2700.00,Uber Eats,Food,Kochi,Kerala,Online,False,False,CUST052,18-25,0
+TXN054,7374,2024-02-02 09:45:00,19000.00,IRCTC,Travel,Nagpur,Maharashtra,Online,False,False,CUST053,46-55,0
+TXN055,3697,2024-02-02 02:45:00,58000.00,Foreign Deal,Electronics,Paris,International,Online,True,False,CUST054,26-35,1
+TXN056,6920,2024-02-02 14:30:00,4100.00,Fabindia,Retail,Coimbatore,Tamil Nadu,POS,False,True,CUST055,36-45,0
+TXN057,9253,2024-02-03 08:00:00,1300.00,Barista,Food,Visakhapatnam,Andhra Pradesh,POS,False,True,CUST056,26-35,0
+TXN058,2586,2024-02-03 12:45:00,7800.00,Ajio,Online Shopping,Thiruvananthapuram,Kerala,Online,False,False,CUST057,26-35,0
+TXN059,5809,2024-02-03 17:15:00,32500.00,Chroma,Electronics,Guwahati,Assam,POS,False,True,CUST058,46-55,0
+TXN060,8132,2024-02-04 10:30:00,5200.00,Yatra,Travel,Chandigarh,Punjab,Online,False,False,CUST059,36-45,0
+TXN061,1465,2024-02-04 01:00:00,44000.00,Night Purchase,Electronics,Patna,Bihar,Online,False,False,CUST060,26-35,1
+TXN062,4798,2024-02-04 15:00:00,2400.00,Barbeque Nation,Food,Ranchi,Jharkhand,POS,False,True,CUST061,26-35,0
+TXN063,7021,2024-02-05 08:30:00,850.00,Bharat Petroleum,Fuel,Raipur,Chhattisgarh,POS,False,True,CUST062,36-45,0
+TXN064,3354,2024-02-05 13:00:00,16000.00,Westside,Retail,Bhubaneswar,Odisha,POS,False,True,CUST063,26-35,0
+TXN065,6687,2024-02-05 18:30:00,3800.00,Inox,Entertainment,Jaipur,Rajasthan,POS,False,True,CUST064,18-25,0
+TXN066,9910,2024-02-06 09:15:00,21000.00,OnePlus Store,Electronics,Mumbai,Maharashtra,Online,False,False,CUST065,26-35,0
+TXN067,2243,2024-02-06 03:15:00,85000.00,US Online Store,Electronics,USA,International,Online,True,False,CUST066,36-45,1
+TXN068,5576,2024-02-06 14:45:00,1600.00,KFC,Food,Delhi,Delhi,POS,False,True,CUST067,18-25,0
+TXN069,8899,2024-02-07 07:00:00,950.00,HP Petrol,Fuel,Bengaluru,Karnataka,POS,False,True,CUST068,26-35,0
+TXN070,1122,2024-02-07 11:30:00,9500.00,Marks & Spencer,Retail,Chennai,Tamil Nadu,POS,False,True,CUST069,36-45,0
+TXN071,4455,2024-02-07 16:45:00,4600.00,OYO Rooms,Travel,Hyderabad,Telangana,Online,False,False,CUST070,26-35,0
+TXN072,7788,2024-02-08 10:00:00,27000.00,LG Store,Electronics,Pune,Maharashtra,POS,False,True,CUST071,46-55,0
+TXN073,3011,2024-02-08 02:30:00,39000.00,Suspicious Merchant,Online Shopping,Kolkata,West Bengal,Online,False,False,CUST072,26-35,1
+TXN074,6344,2024-02-08 15:15:00,2000.00,Subway,Food,Ahmedabad,Gujarat,POS,False,True,CUST073,18-25,0
+TXN075,9677,2024-02-09 08:45:00,1150.00,Essar Petrol,Fuel,Lucknow,Uttar Pradesh,POS,False,True,CUST074,26-35,0
+TXN076,2900,2024-02-09 13:30:00,13500.00,Central Mall,Retail,Indore,Madhya Pradesh,POS,False,True,CUST075,36-45,0
+TXN077,5233,2024-02-09 19:00:00,5900.00,Goibibo,Travel,Bhopal,Madhya Pradesh,Online,False,False,CUST076,26-35,0
+TXN078,8566,2024-02-10 09:30:00,31000.00,Sony Centre,Electronics,Surat,Gujarat,POS,False,True,CUST077,46-55,0
+TXN079,1899,2024-02-10 01:45:00,61000.00,Dubai Online,Electronics,Dubai,International,Online,True,False,CUST078,36-45,1
+TXN080,4122,2024-02-10 14:00:00,2350.00,Baskin Robbins,Food,Kochi,Kerala,POS,False,True,CUST079,18-25,0
+TXN081,7455,2024-02-11 07:15:00,780.00,Shell Petrol,Fuel,Nagpur,Maharashtra,POS,False,True,CUST080,26-35,0
+TXN082,3788,2024-02-11 11:45:00,8100.00,H&M,Retail,Coimbatore,Tamil Nadu,POS,False,True,CUST081,26-35,0
+TXN083,6011,2024-02-11 17:00:00,3400.00,Uber,Travel,Visakhapatnam,Andhra Pradesh,Online,False,False,CUST082,26-35,0
+TXN084,9344,2024-02-12 10:15:00,17500.00,Bewakoof,Online Shopping,Thiruvananthapuram,Kerala,Online,False,False,CUST083,18-25,0
+TXN085,2677,2024-02-12 03:00:00,47000.00,Midnight Store,Electronics,Guwahati,Assam,Online,False,False,CUST084,26-35,1
+TXN086,5900,2024-02-12 15:30:00,1450.00,Chaayos,Food,Chandigarh,Punjab,POS,False,True,CUST085,26-35,0
+TXN087,8233,2024-02-13 08:00:00,1050.00,Indian Oil,Fuel,Patna,Bihar,POS,False,True,CUST086,36-45,0
+TXN088,1566,2024-02-13 12:30:00,10500.00,Pantaloons,Retail,Ranchi,Jharkhand,POS,False,True,CUST087,26-35,0
+TXN089,4899,2024-02-13 18:15:00,6700.00,RedBus,Travel,Raipur,Chhattisgarh,Online,False,False,CUST088,36-45,0
+TXN090,7122,2024-02-14 09:00:00,24000.00,Xiaomi Store,Electronics,Bhubaneswar,Odisha,POS,False,True,CUST089,26-35,0
+TXN091,3455,2024-02-14 02:15:00,56000.00,Late Night Deal,Online Shopping,Jaipur,Rajasthan,Online,False,False,CUST090,26-35,1
+TXN092,6788,2024-02-14 14:45:00,1800.00,Burger King,Food,Mumbai,Maharashtra,POS,False,True,CUST091,18-25,0
+TXN093,9011,2024-02-15 07:30:00,680.00,Bharat Petroleum,Fuel,Delhi,Delhi,POS,False,True,CUST092,26-35,0
+TXN094,2344,2024-02-15 11:00:00,7200.00,Zara,Retail,Bengaluru,Karnataka,POS,False,True,CUST093,26-35,0
+TXN095,5677,2024-02-15 16:30:00,4000.00,Ola,Travel,Chennai,Tamil Nadu,Online,False,False,CUST094,26-35,0
+TXN096,8900,2024-02-16 10:45:00,29500.00,Realme Store,Electronics,Hyderabad,Telangana,Online,False,False,CUST095,26-35,0
+TXN097,1233,2024-02-16 01:30:00,73000.00,UK Store,Electronics,London,International,Online,True,False,CUST096,36-45,1
+TXN098,4566,2024-02-16 15:00:00,2600.00,Taco Bell,Food,Pune,Maharashtra,POS,False,True,CUST097,18-25,0
+TXN099,7899,2024-02-17 08:15:00,920.00,HP Petrol,Fuel,Kolkata,West Bengal,POS,False,True,CUST098,26-35,0
+TXN100,3122,2024-02-17 13:45:00,12800.00,Max Fashion,Retail,Ahmedabad,Gujarat,POS,False,True,CUST099,36-45,0
