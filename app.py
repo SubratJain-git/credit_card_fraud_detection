@@ -170,7 +170,6 @@ def main():
                 else:
                     st.error("❌ Invalid username or password.")
             
-            st.caption("Admin credentials: `admin` / `admin2026`")
 
         else:
             st.subheader("📝 Create a New Account")
