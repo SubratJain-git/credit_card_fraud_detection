@@ -16,6 +16,10 @@ import sqlite3
 import hashlib
 import extra_streamlit_components as stx
 import time
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+import random
 
 # --- PAGE CONFIG ---
 st.set_page_config(page_title="SecurePay Enterprise", page_icon="🏦", layout="wide")
@@ -26,22 +30,20 @@ conn = sqlite3.connect('bank_data.db', check_same_thread=False)
 c = conn.cursor()
 
 def init_db():
-    # Create Users Table
     c.execute('''CREATE TABLE IF NOT EXISTS users 
-                 (username TEXT PRIMARY KEY, password TEXT, role TEXT, name TEXT)''')
-    # Create Transactions Table
+                 (email TEXT PRIMARY KEY, password TEXT, role TEXT, name TEXT)''')
+    
     c.execute('''CREATE TABLE IF NOT EXISTS transactions 
-                 (txn_id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, amount REAL, 
+                 (txn_id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, amount REAL, 
                   hour INTEGER, city TEXT, is_new_device BOOLEAN, is_intl BOOLEAN, 
                   score INTEGER, status TEXT, date TEXT)''')
     
     # Create default Admin if it doesn't exist
-    c.execute("SELECT * FROM users WHERE username='admin'")
+    c.execute("SELECT * FROM users WHERE email='admin@bank.com'")
     if not c.fetchone():
         hashed_pw = hashlib.sha256("admin2026".encode()).hexdigest()
-        c.execute("INSERT INTO users VALUES (?, ?, ?, ?)", ('admin', hashed_pw, 'admin', 'System Administrator'))
+        c.execute("INSERT INTO users VALUES (?, ?, ?, ?)", ('admin@bank.com', hashed_pw, 'admin', 'System Administrator'))
     conn.commit()
-
 init_db()
 
 # --- COOKIE MANAGER (For Persistent Login) ---
@@ -52,7 +54,7 @@ cached_user = cookie_manager.get(cookie="securepay_session")
 
 if cached_user and not st.session_state['logged_in']:
     # If cookie exists, fetch user details and auto-login
-    c.execute("SELECT * FROM users WHERE username=?", (cached_user,))
+    c.execute("SELECT * FROM users WHERE email=?", (cached_user,))
     user_data = c.fetchone()
     if user_data:
         st.session_state['logged_in'] = True
@@ -64,9 +66,36 @@ if cached_user and not st.session_state['logged_in']:
 def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
 
-def verify_login(username, password):
-    c.execute("SELECT * FROM users WHERE username=? AND password=?", (username.lower(), hash_password(password)))
+def verify_login(email, password):
+    c.execute("SELECT * FROM users WHERE email=? AND password=?", (email.lower(), hash_password(password)))
     return c.fetchone()
+
+def update_password(email, new_password):
+    c.execute("UPDATE users SET password=? WHERE email=?", (hash_password(new_password), email.lower()))
+    conn.commit()
+
+    # --- EMAIL NOTIFICATION SYSTEM ---
+def send_email(to_email, subject, body):
+    # The code will now grab these securely from the Streamlit Cloud vault!
+    SENDER_EMAIL = st.secrets["SENDER_EMAIL"]
+    APP_PASSWORD = st.secrets["EMAIL_PASSWORD"]
+
+    msg = MIMEMultipart()
+    msg['From'] = SENDER_EMAIL
+    msg['To'] = to_email
+    msg['Subject'] = subject
+    msg.attach(MIMEText(body, 'html'))
+
+    try:
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login(SENDER_EMAIL, APP_PASSWORD)
+        server.send_message(msg)
+        server.quit()
+        return True
+    except Exception as e:
+        print(f"Failed to send email: {e}")
+        return False
 
 # --- SESSION STATE ---
 if 'logged_in' not in st.session_state:
@@ -133,63 +162,102 @@ def main():
     # AUTHENTICATION SYSTEM (Login / Sign Up)
     # =========================================================
     if not st.session_state['logged_in']:
-        auth_mode = st.radio("Welcome! Please select an option:", ["Login", "Sign Up"], horizontal=True)
+        auth_mode = st.radio("Welcome! Please select an option:", ["Login", "Sign Up", "Forgot Password"], horizontal=True)
         
         st.markdown('<div class="login-box">', unsafe_allow_html=True)
         if auth_mode == "Login":
             st.subheader("🔒 Secure Login")
-            username = st.text_input("Username").lower()
+            email = st.text_input("Registered Email").lower()
             password = st.text_input("Password", type="password")
-            
-            # --- Remember Me Checkbox ---
             remember_me = st.checkbox("Remember Me (Keep me logged in)")
             
             if st.button("Login", type="primary", use_container_width=True, key="main_login_button"):
-                user_data = verify_login(username, password)
+                user_data = verify_login(email, password)
                 if user_data:
                     st.session_state['logged_in'] = True
-                    st.session_state['current_user'] = user_data[0]
+                    st.session_state['current_user'] = user_data[0] # This is now the email
                     st.session_state['role'] = user_data[2]
                     st.session_state['name'] = user_data[3]
                     
-                    # --- Cookie Expiration Logic ---
                     if remember_me:
-                        # Stays logged in for 30 days
                         expire_time = datetime.now() + timedelta(days=30)
                     else:
-                        # Stays logged in for exactly 5 minutes
                         expire_time = datetime.now() + timedelta(minutes=5)
-
-                    # Set the browser cookie!
+                    
                     cookie_manager.set("securepay_session", user_data[0], expires_at=expire_time)
                     
-                    # --- THE FIX: Let the browser finish saving ---
-                    time.sleep(0.5) 
+                    # 🚀 FIRE THE LOGIN ALERT EMAIL!
+                    email_body = f"Hello {user_data[3]},<br><br>We detected a new login to your SecurePay account on {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}. If this was not you, please secure your account immediately."
+                    send_email(user_data[0], "🚨 SecurePay: New Login Alert", email_body)
                     
+                    import time
+                    time.sleep(0.5)
                     st.rerun()
                 else:
-                    st.error("❌ Invalid username or password.")
-            
+                    st.error("❌ Invalid email or password.")
 
-        else:
+        elif auth_mode == "Sign Up":
             st.subheader("📝 Create a New Account")
             new_name = st.text_input("Full Name")
-            new_user = st.text_input("Choose a Username").lower()
+            new_email = st.text_input("Email Address").lower()
             new_pass = st.text_input("Choose a Password", type="password")
             
             if st.button("Sign Up & Register", type="primary", use_container_width=True):
-                if new_name and new_user and new_pass:
-                    c.execute("SELECT * FROM users WHERE username=?", (new_user,))
-                    if c.fetchone():
-                        st.error("⚠️ Username already exists! Choose another.")
+                if new_name and new_email and new_pass:
+                    if "@" not in new_email or "." not in new_email:
+                        st.warning("Please enter a valid email format.")
                     else:
-                        c.execute("INSERT INTO users VALUES (?, ?, ?, ?)", 
-                                  (new_user, hash_password(new_pass), 'customer', new_name))
-                        conn.commit()
-                        st.success("✅ Account created successfully! Please Login.")
+                        c.execute("SELECT * FROM users WHERE email=?", (new_email,))
+                        if c.fetchone():
+                            st.error("⚠️ Email already registered! Please login.")
+                        else:
+                            c.execute("INSERT INTO users VALUES (?, ?, ?, ?)", 
+                                      (new_email, hash_password(new_pass), 'customer', new_name))
+                            conn.commit()
+                            
+                            # 🚀 FIRE THE WELCOME EMAIL!
+                            send_email(new_email, "Welcome to SecurePay!", f"Hello {new_name},<br>Your account has been successfully created.")
+                            st.success("✅ Account created! Check your email for confirmation.")
                 else:
                     st.warning("Please fill all fields.")
-        st.markdown('</div>', unsafe_allow_html=True)
+
+        elif auth_mode == "Forgot Password":
+            st.subheader("🔑 Password Recovery")
+            st.info("Enter your registered email to receive a secure 4-digit OTP.")
+            reset_email = st.text_input("Enter your Email").lower()
+            
+            # Step 1: Generate & Send OTP
+            if st.button("Send Recovery OTP", use_container_width=True):
+                c.execute("SELECT * FROM users WHERE email=?", (reset_email,))
+                if c.fetchone():
+                    # Generate a real random 4-digit OTP
+                    real_otp = str(random.randint(1000, 9999))
+                    st.session_state['reset_email'] = reset_email
+                    st.session_state['live_otp'] = real_otp
+                    
+                    # 🚀 FIRE THE OTP EMAIL!
+                    send_email(reset_email, "SecurePay Password Reset OTP", f"Your password reset OTP is: <b>{real_otp}</b>. Do not share this with anyone.")
+                    
+                    st.success("✅ A live OTP has been sent to your email inbox!")
+                else:
+                    st.error("❌ Email not found in our system.")
+            
+            # Step 2: Verify OTP
+            if 'live_otp' in st.session_state and st.session_state.get('reset_email') == reset_email:
+                st.markdown("---")
+                user_otp = st.text_input("Enter the 4-Digit OTP from your email", type="password")
+                new_pass = st.text_input("Enter New Password", type="password")
+                
+                if st.button("Reset My Password", type="primary", use_container_width=True):
+                    if user_otp == st.session_state['live_otp'] and new_pass:
+                        update_password(reset_email, new_pass)
+                        st.success("✅ Password securely updated! You can now log in.")
+                        
+                        # Clean up memory
+                        del st.session_state['live_otp']
+                        del st.session_state['reset_email']
+                    elif user_otp != st.session_state['live_otp']:
+                        st.error("❌ Invalid OTP. Try again.")
 
     # =========================================================
     # SECURE PORTAL (If logged in)
@@ -225,7 +293,7 @@ def main():
             with tab1:
                 st.write("### Database Record")
                 # Fetch ONLY this user's data from the database
-                user_df = pd.read_sql_query(f"SELECT date, amount, city, status FROM transactions WHERE username='{st.session_state['current_user']}' ORDER BY txn_id DESC", conn)
+                user_df = pd.read_sql_query(f"SELECT date, amount, city, status FROM transactions WHERE email='{st.session_state['current_user']}' ORDER BY txn_id DESC", conn)
                 
                 if user_df.empty:
                     st.info("No transactions found in the database. Go to 'Send New Payment' to make your first transaction!")
@@ -247,7 +315,7 @@ def main():
                         
                         # SAVE TO DATABASE PERMANENTLY
                         c.execute('''INSERT INTO transactions 
-                                     (username, amount, hour, city, is_new_device, is_intl, score, status, date) 
+                                     (email, amount, hour, city, is_new_device, is_intl, score, status, date) 
                                      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)''', 
                                   (st.session_state['current_user'], amount, time_input.hour, city, 
                                    is_new_device, is_intl, score, status, datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
