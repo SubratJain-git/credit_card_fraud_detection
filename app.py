@@ -401,6 +401,7 @@ def main():
                             bulk_df[['Predicted_Score', 'Predicted_Status']] = bulk_df.apply(get_score, axis=1)
                             
                             # Show the first 1000 so the browser doesn't crash
+                            st.write(bulk_df.columns)
                             st.write("### Analytics Complete (Showing top 1,0000 results)")
                             st.dataframe(bulk_df.head(10000).style.map(lambda x: 'background-color: #ffcccc' if x == 'BLOCKED' else ('background-color: #fff3cd' if x == 'WARNING' else ''), subset=['status']))
 
