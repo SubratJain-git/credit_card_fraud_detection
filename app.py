@@ -403,7 +403,7 @@ def main():
                             # Show the first 1000 so the browser doesn't crash
                             st.write(bulk_df.columns)
                             st.write("### Analytics Complete (Showing top 1,0000 results)")
-                            st.dataframe(bulk_df.head(10000).style.map(lambda x: 'background-color: #ffcccc' if x == 'BLOCKED' else ('background-color: #fff3cd' if x == 'WARNING' else ''), subset=['status']))
+                            st.dataframe(bulk_df.head(10000).style.map(lambda x: 'background-color: #ffcccc' if x == 'High Risk' else ('background-color: #fff3cd' if x == 'Suspicious' else ''), subset=['risk_label']))
 
 if __name__ == "__main__":
     main()
