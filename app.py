@@ -402,7 +402,7 @@ def main():
                             
                             # Show the first 1000 so the browser doesn't crash
                             st.write("### Analytics Complete (Showing top 1,0000 results)")
-                            st.dataframe(bulk_df.head(100000).style.applymap(lambda x: 'background-color: #ffcccc' if x == 'BLOCKED' else ('background-color: #fff3cd' if x == 'WARNING' else ''), subset=['Predicted_Status']), use_container_width=True)
+                            st.dataframe(bulk_df.head(100000).style.map(lambda x: 'background-color: #ffcccc' if x == 'BLOCKED' else ('background-color: #fff3cd' if x == 'WARNING' else ''), subset=['Predicted_Status']), use_container_width=True)
 
 if __name__ == "__main__":
     main()
