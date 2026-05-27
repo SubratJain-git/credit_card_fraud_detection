@@ -298,7 +298,7 @@ def main():
                 if user_df.empty:
                     st.info("No transactions found in the database. Go to 'Send New Payment' to make your first transaction!")
                 else:
-                    st.dataframe(user_df.style.applymap(lambda x: 'background-color: #ffcccc' if x == 'BLOCKED' else '', subset=['status']), use_container_width=True)
+                    st.dataframe(user_df.style.map(lambda x: 'background-color: #ffcccc' if x == 'BLOCKED' else '', subset=['status']), use_container_width=True)
 
             with tab2:
                 st.write("### Initiate a Real-Time Payment")
