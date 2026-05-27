@@ -367,7 +367,7 @@ def main():
                             st.info("No blocked transactions to map yet.")
                     
                     st.write("### Live Network Transaction Feed")
-                    st.dataframe(master_df[['date', 'username', 'amount', 'city', 'score', 'status']].sort_values(by='date', ascending=False), use_container_width=True)
+                    st.dataframe(master_df[['date', 'email', 'amount', 'city', 'score', 'status']].sort_values(by='date', ascending=False), use_container_width=True)
 
             with tab2:
                 st.subheader("System Architecture & Explainability")
